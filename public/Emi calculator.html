@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EMI CALCULATOR</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+    <style>
+        input[type="range"]{
+          width: 100%;
+        }
+    </style>
+    <script type="text/javascript">
+     function Amountchange(){
+        document.getElementById("txtAmount"). value = document.getElementById("amountRange").value;
+     }
+     function Yearchange(){
+        document.getElementById("txtYears").value= document.getElementById("yearRange").value;
+     }
+     function Ratechange(){
+        document.getElementById("txtRate"). value = document.getElementById("rateRange"). value;
+     }
+     function calClick(){
+        var P = parseInt(document.getElementById("txtAmount") . value);
+        var N =parseInt(document.getElementById("txtYears"). value) * 12;
+        var R =parseInt(document.getElementById("txtRate").value)/12/100;
+        var EMI = P * R *(Math.pow(1+R,N))/(Math.pow(1+R,N))-1;
+        document .getElementById("result").innerHTML = "Your Monthly Instalment amount is &#8377;" +Math.round(EMI);
+     }
+    </script>
+</head>
+<body class="container-fluid bg-dark text-white">
+    <div class="bg-white text-dark p-4 mt-4">
+   <h3 class="text-primary text-center ">Presonal Loan Calculator</h3>
+       <div class=" row mt-4">
+       <div class="col text-center">
+        Amount you need&#8377; <input type="text" id="txtAmount">
+       </div>
+       <div class="col text-center">
+        for <input type="text" size="4" id="txtYears">year
+       </div>
+       <div class="col text-center">
+        intrest rate <input type="text" size="4" id="txtRate">%
+       </div>
+
+       </div>
+        <div class="row mt-4">
+        <div class="col text-center">
+         <input type="range" onchange="Amountchange()" id="amountRange" min="50000" max="500000" value="50000">
+        </div>
+        <div class="col text-center">
+        <input type="range" onchange="Yearchange()" id="yearRange" min="1" max="5" value="1">
+        </div>
+        <div class="col text-center">
+        <input type="range" onchange="Ratechange()" id="rateRange" min="8.45" max="12.45" value="8.45" step="0.01">
+        </div>
+
+        </div>
+        <div class="row mt-4">
+            <div class="col d-flex justify-content-between">
+            <span>&#8377,50000</span>
+            <span>&#8377,500000</span>
+            </div>
+            <div class="col d-flex justify-content-between">
+                <span>1</span>
+                <span>5</span>
+                </div>
+                <div class="col d-flex justify-content-between">
+                    <span>8.45</span>
+                    <span>12.45</span>
+                    </div>
+        </div>
+        <div class="row mt-4">
+          <div class="col text-end">
+             <button onclick="calClick()" class="btn btn-primary">Calculate</button>
+          </div>
+        </div>
+        <div class="mt-4">
+          <p id="result" class="text-center h2 text-success"></p>
+        </div>
+    </div>
+    
+</body>
+</html>
